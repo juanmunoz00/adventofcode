@@ -2,7 +2,7 @@
 #File
 DEV = 1
 PROD = 2
-devMode = DEV
+devMode = PROD
 
 if( devMode == DEV ):
   theInputFile = "2021/d02_data_test.txt"
@@ -25,6 +25,7 @@ endUpPositionChar = startUpPositionChar + 1
 
 depthPosition = 0
 finalPosition = 0
+aim = 0
 
 f = open(theInputFile, "r")
 for instruction in f:
@@ -35,20 +36,25 @@ for instruction in f:
   if( command == "f" ):
     horizontalPositionVal = instruction[startHorizontalPositionChar:endHorizontalPositionChar]
     horizontalPosition += int(horizontalPositionVal)
+    #aim = int(horizontalPositionVal)
+    #print('<aim: {}>'.format(aim))
+    depthPosition += aim * int(horizontalPositionVal)
 
-    print('|Command: {} position: {} total H Position: {}|'.format(command, horizontalPositionVal, horizontalPosition))
+    #print('|Command: {} position: {} total H Position: {} Aim: {} depthPosition: {}|'.format(command, horizontalPositionVal, horizontalPosition, aim, depthPosition))
   elif ( command == "d" ):
     downPositionVal = instruction[startDownPositionChar:endtDownPositionChar]
     #downPosition += int(downPositionVal)
-    depthPosition += int(downPositionVal) 
+    aim += int(downPositionVal)
+    #depthPosition += int(downPositionVal) 
     
-    print('|Command: {} position: {} total D Position: {}|'.format(command, downPositionVal, downPosition))  
+    #print('|Command: {} position: {} total D Position: {} Aim: {} depthPosition: {}|'.format(command, downPositionVal, depthPosition, aim, depthPosition))
   elif ( command == "u" ):
     upPositionVal = instruction[startUpPositionChar:endUpPositionChar]
     #upPosition += int(upPositionVal)
-    depthPosition -= int(upPositionVal)
+    aim -= int(upPositionVal)
+    #depthPosition -= int(upPositionVal)
     
-    print('|Command: {} position: {} total U Position: {}|'.format(command, upPositionVal, upPosition))  
+    #print('|Command: {} position: {} total U Position: {} Aim: {} depthPosition: {}|'.format(command, upPositionVal, depthPosition, aim, depthPosition))  
   
   #print('|Command: {} Depth Position: {}|'.format(command, depthPosition, depthPosition))
 finalPosition = horizontalPosition * depthPosition
