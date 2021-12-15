@@ -2,7 +2,7 @@
 #File
 DEV = 1
 PROD = 2
-devMode = PROD
+devMode = DEV
 
 if( devMode == DEV ):
   theInputFile = "2021/d03_data_test1.txt"
@@ -29,106 +29,31 @@ bitsPerRow = 11
 gammaRate = []
 epsilonRate = []
 
-def GetMCbAndLCB(onesInBit, zerosInBit):
+def GetMCbAndLCB(onesInBit, zerosInBit, bit):
   if( onesInBit > zerosInBit ): 
-    #print("MCb in first bit is one")
+    print("MCb in bit {} is one".format(bit))
     gammaRate.append(1)
     epsilonRate.append(0)
   else:
-    #print("MCb in first bit is zero")
+    print("LCb in bit {} is zero".format(bit))
     gammaRate.append(0)
     epsilonRate.append(1)  
 
-
 def GetRates():
 
-  GetMCbAndLCB(int(firstBitValue.count("1")),int(firstBitValue.count("0")))
-  GetMCbAndLCB(int(secondBitValue.count("1")),int(secondBitValue.count("0")))
-  GetMCbAndLCB(int(thirdBitValue.count("1")),int(thirdBitValue.count("0")))  
-  GetMCbAndLCB(int(fourthBitValue.count("1")),int(fourthBitValue.count("0")))
-  GetMCbAndLCB(int(fifthBitValue.count("1")),int(fifthBitValue.count("0")))
-  GetMCbAndLCB(int(sixthBitValue.count("1")),int(sixthBitValue.count("0")))
-  GetMCbAndLCB(int(seventhBitValue.count("1")),int(seventhBitValue.count("0")))
-  GetMCbAndLCB(int(eigthBitValue.count("1")),int(eigthBitValue.count("0")))
-  GetMCbAndLCB(int(ninethBitValue.count("1")),int(ninethBitValue.count("0")))
-  GetMCbAndLCB(int(tenthBitValue.count("1")),int(tenthBitValue.count("0")))
-  GetMCbAndLCB(int(eleventhBitValue.count("1")),int(eleventhBitValue.count("0")))
+  GetMCbAndLCB(int(firstBitValue.count("1")),int(firstBitValue.count("0")), 1)
+  GetMCbAndLCB(int(secondBitValue.count("1")),int(secondBitValue.count("0")), 2)
+  GetMCbAndLCB(int(thirdBitValue.count("1")),int(thirdBitValue.count("0")), 3)  
+  GetMCbAndLCB(int(fourthBitValue.count("1")),int(fourthBitValue.count("0")), 4)
+  GetMCbAndLCB(int(fifthBitValue.count("1")),int(fifthBitValue.count("0")), 5)
+  GetMCbAndLCB(int(sixthBitValue.count("1")),int(sixthBitValue.count("0")), 6)
+  GetMCbAndLCB(int(seventhBitValue.count("1")),int(seventhBitValue.count("0")), 7)
+  GetMCbAndLCB(int(eigthBitValue.count("1")),int(eigthBitValue.count("0")), 8)
+  GetMCbAndLCB(int(ninethBitValue.count("1")),int(ninethBitValue.count("0")), 9)
+  GetMCbAndLCB(int(tenthBitValue.count("1")),int(tenthBitValue.count("0")), 10)
+  GetMCbAndLCB(int(eleventhBitValue.count("1")),int(eleventhBitValue.count("0")), 11)
 
-  """
-  zerosInFirstBit = int(firstBitValue.count("0"))
-  onesInFirstBit = int(firstBitValue.count("1"))
-
-  #print("Zeros in Bit 1: {}".format(zerosInFirstBit))
-  #print("Ones in Bit 1: {}".format(onesInFirstBit))
-  if( onesInFirstBit > zerosInFirstBit ): 
-    #print("MCb in first bit is one")
-    gammaRate.append(1)
-    epsilonRate.append(0)
-  else:
-    #print("MCb in first bit is zero")
-    gammaRate.append(0)
-    epsilonRate.append(1)
-  #print('-------------------')
-  zerosInSecondBit = int(secondBitValue.count("0"))
-  onesInSecondBit = int(secondBitValue.count("1"))
-  #print("Zeros in Bit 2: {}".format(zerosInSecondBit))
-  #print("Ones in Bit 2: {}".format(onesInSecondBit))
-  if( onesInSecondBit > zerosInSecondBit ): 
-    #print("MCb in second bit is one")
-    gammaRate.append(1)
-    epsilonRate.append(0)
-  else:
-    #print("MCb in second bit is zero")
-    gammaRate.append(0)
-    epsilonRate.append(1)
-  
-  #print('-------------------')
-  zerosInThirdBit = int(thirdBitValue.count("0"))
-  onesInThirdBit = int(thirdBitValue.count("1"))
-  #print("Zeros in Bit 3: {}".format(zerosInThirdBit))
-  #print("Ones in Bit 3: {}".format(onesInThirdBit))
-  if( onesInThirdBit > zerosInThirdBit ): 
-    #print("MCb in third bit is one")
-    gammaRate.append(1)
-    epsilonRate.append(0)
-  else:
-    #print("MCb in third bit is zero")
-    gammaRate.append(0)
-    epsilonRate.append(1)
-  #print('-------------------')
-  
-  zerosInFourthBit = int(fourthBitValue.count("0"))
-  onesInFourthBit = int(fourthBitValue.count("1"))
-  #print("Zeros in Bit 4: {}".format(zerosInFourthBit))
-  #print("Ones in Bit 4: {}".format(onesInFourthBit))
-  if( onesInFourthBit > zerosInFourthBit ): 
-    #print("MCb in fourth bit is one")
-    gammaRate.append(1)
-    epsilonRate.append(0)
-  else:
-    #print("MCb in fourth bit is zero")
-    gammaRate.append(0)
-    epsilonRate.append(1)
-  #print('-------------------')
-  
-  zerosInFifthBit = int(fifthBitValue.count("0"))
-  onesInFifthBit = int(fifthBitValue.count("1"))
-  #print("Zeros in Bit 5: {}".format(zerosInFifthBit))
-  #print("Ones in Bit 5: {}".format(onesInFifthBit))
-  if( onesInFifthBit > zerosInFifthBit ): 
-    #print("MCb in fifth bit is one")
-    gammaRate.append(1)
-    epsilonRate.append(0)
-  else:
-    #print("MCb in fifth bit is zero")
-    gammaRate.append(0)
-    epsilonRate.append(1)
-  #print('-------------------')
-  """
-
-  """
-  _gammaRate = (str(gammaRate[0]) + str(gammaRate[1]) + str(gammaRate[2]) + str(gammaRate[3]) + str(gammaRate[4]).strip())
-  """
+  print('-------------------')
   _gammaRate = ""
   for _gammaRateBit in gammaRate:
     _gammaRate = _gammaRate + str(_gammaRateBit).strip()
@@ -136,10 +61,6 @@ def GetRates():
   print("Gamma Rate: " + _gammaRate)
   decimalGammaRate = int(_gammaRate,2)
   print("Gamma Rate in decimal: {}".format(decimalGammaRate))
- 
-  """
-  _epsilonRate = (str(epsilonRate[0]) + str(epsilonRate[1]) + str(epsilonRate[2]) + str(epsilonRate[3]) + str(epsilonRate[4]).strip())
-  """
   
   _epsilonRate = ""
   for _epsilonRateBit in epsilonRate:
@@ -150,17 +71,22 @@ def GetRates():
   print("Epsilon Rate in decimal: {}".format(decimalEpsilonRate))
 
   powerConsumption = decimalGammaRate * decimalEpsilonRate
-  print("Power Consumption: {}".format(powerConsumption))  
+  print("Power Consumption: {}".format(powerConsumption))
+  print('-------------------')
 
 def Main():
-  #print('-------------------')
-  #print("MCb = most common bit")
-  #print('-------------------')
+  """
+  print('-------------------')
+  print("MCb = most common bit")
+  print("LCb = least common bit")
+  print('-------------------')
+  """
 
   f = open(theInputFile, "r")
   for allBits in f:
     strBits = str(allBits).strip()
-    #print(allBits)
+    print(allBits)
+    print('-------------------')
 
     msb = 0
     for strBit in strBits:
